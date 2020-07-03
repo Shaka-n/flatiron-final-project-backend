@@ -10,27 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_29_191307) do
+ActiveRecord::Schema.define(version: 0) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "stations", force: :cascade do |t|
-    t.string "complex_id"
-    t.string "gtfs_stop_id"
-    t.string "division"
-    t.string "line"
-    t.string "stop_name"
-    t.string "borough"
-    t.string "daytime"
-    t.string "routes"
-    t.string "structure"
-    t.string "gtfs_lat"
-    t.string "gtfs_long"
-    t.string "north_d_label"
-    t.string "south_d_label"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
 end

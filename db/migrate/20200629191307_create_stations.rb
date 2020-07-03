@@ -7,8 +7,7 @@ class CreateStations < ActiveRecord::Migration[6.0]
       t.string :line
       t.string :stop_name
       t.string :borough
-      t.string :daytime
-      t.string :routes
+      t.string :daytime_routes
       t.string :structure
       t.string :gtfs_lat
       t.string :gtfs_long
