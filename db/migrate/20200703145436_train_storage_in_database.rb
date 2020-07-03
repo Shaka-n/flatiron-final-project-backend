@@ -1,9 +1,5 @@
 class TrainStorageInDatabase < ActiveRecord::Migration[6.0]
   def change
-    create_table :lines do |table|
-      table.string :mta_name
-      table.string :friendly_name
-    end
 
     create_table :transport_events do |table|
       table.references :station, foreign_key: true

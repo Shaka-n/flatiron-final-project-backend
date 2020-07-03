@@ -18,10 +18,10 @@ csv.each do |row|
     s.complex_id = row['Complex ID']
     s.gtfs_stop_id = row['GTFS Stop ID']
     s.division = row['Division']
-    s.line = row['Line']
+    s.route = row['Line']
     s.stop_name = row['Stop Name']
     s.borough = row['Borough']
-    s.daytime = row['Daytime Routes']
+    s.lines = row['Daytime Routes']
     s.structure = row['Structure']
     s.gtfs_lat = row['GTFS Latitude']
     s.gtfs_long = row['GTFS Longitude']
@@ -31,3 +31,4 @@ csv.each do |row|
 end
 
 puts "There are now #{Station.count} rows in the station table."
+

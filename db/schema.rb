@@ -10,9 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2020_07_03_151503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "station_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["station_id"], name: "index_favorites_on_station_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "stations", force: :cascade do |t|
+    t.string "complex_id"
+    t.string "gtfs_stop_id"
+    t.string "division"
+    t.string "route"
+    t.string "stop_name"
+    t.string "borough"
+    t.string "lines"
+    t.string "structure"
+    t.string "gtfs_lat"
+    t.string "gtfs_long"
+    t.string "north_d_label"
+    t.string "south_d_label"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "transport_events", force: :cascade do |t|
+    t.bigint "station_id"
+    t.datetime "arrival"
+    t.datetime "departure"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "direction"
+    t.index ["station_id"], name: "index_transport_events_on_station_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.bigint "station_id"
+    t.index ["station_id"], name: "index_users_on_station_id"
+  end
+
+  add_foreign_key "favorites", "stations"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "transport_events", "stations"
 end

@@ -4,10 +4,10 @@ class CreateStations < ActiveRecord::Migration[6.0]
       t.string :complex_id
       t.string :gtfs_stop_id
       t.string :division
-      t.string :line
+      t.string :route
       t.string :stop_name
       t.string :borough
-      t.string :daytime_routes
+      t.string :lines
       t.string :structure
       t.string :gtfs_lat
       t.string :gtfs_long
