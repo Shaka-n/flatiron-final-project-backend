@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_151503) do
+ActiveRecord::Schema.define(version: 2020_07_04_160719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.string "body"
+    t.bigint "station_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["station_id"], name: "index_comments_on_station_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
 
   create_table "favorites", force: :cascade do |t|
     t.bigint "user_id"
@@ -42,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_151503) do
   end
 
   create_table "transport_events", force: :cascade do |t|
+    t.string "station_code"
     t.bigint "station_id"
     t.datetime "arrival"
     t.datetime "departure"
@@ -57,6 +68,8 @@ ActiveRecord::Schema.define(version: 2020_07_03_151503) do
     t.index ["station_id"], name: "index_users_on_station_id"
   end
 
+  add_foreign_key "comments", "stations"
+  add_foreign_key "comments", "users"
   add_foreign_key "favorites", "stations"
   add_foreign_key "favorites", "users"
   add_foreign_key "transport_events", "stations"

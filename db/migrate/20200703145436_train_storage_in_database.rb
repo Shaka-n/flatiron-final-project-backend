@@ -2,6 +2,7 @@ class TrainStorageInDatabase < ActiveRecord::Migration[6.0]
   def change
 
     create_table :transport_events do |table|
+      table.string :station_code
       table.references :station, foreign_key: true
       table.timestamp :arrival
       table.timestamp :departure
