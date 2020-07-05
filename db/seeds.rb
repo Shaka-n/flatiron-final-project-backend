@@ -7,6 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
 
+Station.destroy_all
+Line.destroy_all
+
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'Stations.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 # puts csv
@@ -32,3 +35,17 @@ end
 
 puts "There are now #{Station.count} rows in the station table."
 
+Line.create(name:"L")
+Line.create(name:"ACE")
+Line.create(name:"123456")
+Line.create(name:"BDFM")
+Line.create(name:"NQRW")
+Line.create(name:"JZ")
+
+puts "There are now #{Line.count} rows in the line table."
+
+User.create(name:"Garen")
+
+Comment.create(body:"This is a test comment", user_id:User.first.id, line_id: Line.first.id)
+
+puts "There are now #{Comment.count} rows in the comment table"

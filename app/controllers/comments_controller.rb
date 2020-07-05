@@ -10,7 +10,14 @@ class CommentsController < ApplicationController
     end
 
     def create
-        comment= Comment.create(user_id:params[:user_id], station_id:params)
+        target_line_id = Line.find_by(name: params[:name])
+
+        comment= Comment.create(
+            user_id: params[:user_id], 
+            line_id: target_line_id.id,
+            body: params[:body]
+            )
+
         render json: comment
     end
 

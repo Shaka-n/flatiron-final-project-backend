@@ -17,11 +17,11 @@ ActiveRecord::Schema.define(version: 2020_07_04_160719) do
 
   create_table "comments", force: :cascade do |t|
     t.string "body"
-    t.bigint "station_id"
+    t.bigint "line_id"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["station_id"], name: "index_comments_on_station_id"
+    t.index ["line_id"], name: "index_comments_on_line_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -32,6 +32,12 @@ ActiveRecord::Schema.define(version: 2020_07_04_160719) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["station_id"], name: "index_favorites_on_station_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "lines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "stations", force: :cascade do |t|
@@ -68,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_160719) do
     t.index ["station_id"], name: "index_users_on_station_id"
   end
 
-  add_foreign_key "comments", "stations"
+  add_foreign_key "comments", "lines"
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "stations"
   add_foreign_key "favorites", "users"
