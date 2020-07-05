@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     end
 
     def show
-        comment = Comment.find(id: params[:id])
+        comment = Comment.find_by(id: params[:id])
     end
 
     def create
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        comment = Comment.find(id: params[:id])
+        comment = Comment.find_by(id: params[:id])
         comment.destroy
         render json: comment
     end

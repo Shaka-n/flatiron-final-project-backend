@@ -5,7 +5,7 @@ class FavoritesController < ApplicationController
     end
 
     def show
-        favorite = Favorite.find(id: params[:id])
+        favorite = Favorite.find_by(id: params[:id])
     end
 
     def create
@@ -14,7 +14,7 @@ class FavoritesController < ApplicationController
     end
 
     def destroy
-        favorite = Favorite.find(id: params[:id])
+        favorite = Favorite.find_by(id: params[:id])
         favorite.destroy
         render json: favorite
     end

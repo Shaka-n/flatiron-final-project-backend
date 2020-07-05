@@ -5,7 +5,7 @@ class LinesController < ApplicationController
     end
     
     def show
-        line = Line.find(id: params[:id])
-        render json: line
+        line = Line.find_by(id: params[:id])
+        render json: {id:line.id, name:line.name, comments:line.comments}
     end
 end
