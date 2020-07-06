@@ -9,12 +9,15 @@ class FavoritesController < ApplicationController
     end
 
     def create
-        favorite= Favorite.create(user_id:params[:user_id], station_id:params)
+        found_station_id = Station.find_by(gtfs_stop_id: params[:gtfs_stop_id]).id
+        favorite= Favorite.create(user_id: params[:user_id], station_id: found_station_id)
+
         render json: favorite
     end
 
     def destroy
-        favorite = Favorite.find_by(id: params[:id])
+        found_station_id = Station.find_by(gtfs_stop_id: params[:gtfs_stop_id]).id
+        favorite = Favorite.find_by(user_id: params[:user_id], station_id: found_station_id)
         favorite.destroy
         render json: favorite
     end
