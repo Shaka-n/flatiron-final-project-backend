@@ -8,7 +8,8 @@ class UsersController < ApplicationController
 
     def show
         user = User.find_by(id:params[:id])
-        render json: {id:user.id, name:user.name, favorites:user.favorites}
+        favorites = user.favorites.map{|favorite| Station.find_by(id: favorite.station_id).gtfs_stop_id}
+        render json: {id:user.id, name:user.name, favorites:favorites}
     end
 
     def create
