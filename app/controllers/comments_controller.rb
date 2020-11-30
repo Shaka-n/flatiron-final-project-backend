@@ -15,7 +15,8 @@ class CommentsController < ApplicationController
         comment= Comment.create(
             user_id: params[:user_id], 
             line_id: target_line_id.id,
-            body: params[:body]
+            body: params[:body],
+            rating: params[:rating]
             )
 
         render json: comment
